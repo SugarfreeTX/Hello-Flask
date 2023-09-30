@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+Contact
+{% endblock %}
+{% block content %}
+<h2>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</h2>
+<form method="POST" action="{{ url_for('contact') }}">
+    <div class="container">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" />
+    <label for="message">Message</label>
+    <textarea name="message" id="message"></textarea>
+    <input type="submit" value="Send Message" />
+    </div>
+{% endblock %}

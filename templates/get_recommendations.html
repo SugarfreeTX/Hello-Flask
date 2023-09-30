@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}
+Recommendations
+{% endblock %}
+{% block content %}
+<h1>1. Upload your profile shot preferences</h1>
+<form action="{{url_for('upload_file')}}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file[]" id="file" multiple="">
+    <input type="submit" value="Upload" name="submit">
+</form>
+<h1>2. Upload your figure type preferences</h1>
+
+<h1>We found recommendations!</h1>
+{% endblock %}
