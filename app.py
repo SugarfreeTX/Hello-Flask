@@ -8,6 +8,8 @@ import os
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+SHAPE_FOLDER = 'shape'
+app.config['SHAPE_FOLDER'] = SHAPE_FOLDER
 
 @app.route("/")
 def home():
@@ -52,6 +54,14 @@ def upload_file():
         # return redirect(url_for('get_recommendations'))
     return render_template('get_recommendations.html')
 
+@app.route("/upload_shape/", methods=['GET', 'POST'])
+def upload_shape():
+    if request.method == 'POST':
+        f = request.files['file[]']
+        if f:
+            filename = secure_filename(f.filename)
+            f.save(os.path.join(SHAPE_FOLDER, filename))
+    return render_template('get_recommendations.html')
 
 
 
