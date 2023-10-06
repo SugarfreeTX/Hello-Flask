@@ -16,7 +16,7 @@ const predict = async (modelURL) => {
         const data = new FormData();
         data.append('file', img);
 
-        const processedImage = await fetch("/api/prepare",
+        const processedImage = await fetch("/api/data/",
             {
                 method: 'POST',
                 body: data

@@ -7,6 +7,7 @@ import os
 import json
 import numpy as np 
 import cv2
+import io 
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -68,15 +69,15 @@ def upload_shape():
             f.save(os.path.join(SHAPE_FOLDER, filename))
     return render_template('get_recommendations.html')
 
-# @app.route('/model')
-# def model():
-#     json_data = json.load(open("./model_js/model.json"))
-#     return jsonify(json_data)
+@app.route('/model')
+def model():
+    json_data = json.load(open("./model_js/model.json"))
+    return jsonify(json_data)
 
 
-# @app.route('/<path:path>')
-# def load_shards(path):
-#     return send_from_directory('model_js', path)
+@app.route('/<path:path>')
+def load_shards(path):
+    return send_from_directory('model_js', path)
 
 def preprocessing(file):
     in_memory_file = io.BytesIO()
