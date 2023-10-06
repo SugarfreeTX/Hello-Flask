@@ -1,6 +1,6 @@
 let model;
 
-const modelURL = 'http://localhost:5000/model';
+const modelURL = 'http://127.0.0.1:5000/model';
 
 const preview = document.getElementById("preview");
 const predictButton = document.getElementById("predict");
@@ -27,8 +27,8 @@ const predict = async (modelURL) => {
             });
 
         // shape has to be the same as it was for training of the model
-        const prediction = model.predict(tf.reshape(processedImage, shape = [1, 28, 28, 1]));
-        const label = prediction.argMax(axis = 1).dataSync()[0];
+        const prediction = model.predict(tf.reshape(processedImage, shape = [1, 224, 224, 3]));
+        const label = prediction.argMax(axis = -1).dataSync()[0];
         renderImageLabel(img, label);
     })
 };

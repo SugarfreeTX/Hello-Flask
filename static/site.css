@@ -89,8 +89,30 @@
   }
 }
 
-
-
+/* MODEL OUTPUT IMAGE RENDER  */
+.image-block {
+  display: inline-block;
+}
+.image-block-loaded {
+  width: 100px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+.image-block__label {
+  margin-left: 10px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+.file-form__files {
+  display: none;
+  margin-top: 2px;
+}
+.preview {
+  text-align: center;
+}
 
 /* M O D A L - A T T R I B S */
 
