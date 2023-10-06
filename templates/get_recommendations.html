@@ -7,8 +7,8 @@ Recommendations
 <form action="{{url_for('upload_file')}}" method="post" enctype="multipart/form-data">
     <input type="file" name="file[]" id="file" multiple="">
     <input type="submit" value="Upload" name="submit">
-    <input type="file" id="file" multiple class="file-form__select-file">
-    <label for="file" class="file-form__select-file_label">Choose files</label>
+    <!-- <input type="file" id="file" multiple class="file-form__select-file">
+    <label for="file" class="file-form__select-file_label">Choose files</label> -->
     <button type="submit" class="file-form__button file-form__button_predict" id="predict">Predict</button>
     <button type="submit" class="file-form__button file-form__button_clear" id="clear">Clear</button>
     <span class="file-form__files" id="number-of-files"></span>
@@ -21,3 +21,5 @@ Recommendations
 
 <h1>We found recommendations!</h1>
 {% endblock %}
+<div id="preview"></div>
+<script src="../static/main.js"></script>
