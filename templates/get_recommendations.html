@@ -1,26 +1,27 @@
 {% extends "layout.html" %}
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 {% block title %}
 Recommendations
 {% endblock %}
 {% block content %}
 <h1>1. Upload your profile shot preferences</h1>
-<form action="{{url_for('upload_file')}}" method="post" enctype="multipart/form-data">
+<!-- <form action="{{url_for('upload_file')}}" method="post" enctype="multipart/form-data">
     <input type="file" name="file[]" id="file" multiple="">
     <input type="submit" value="Upload" name="submit">
-    <!-- <input type="file" id="file" multiple class="file-form__select-file">
-    <label for="file" class="file-form__select-file_label">Choose files</label> -->
-    <button type="submit" id="predict">Predict</button>
+</form> -->
+
+<main>
+    <input type="file" id="file" multiple>
+    <button type="submit"  id="predict">Predict</button>
     <button type="submit" id="clear">Clear</button>
     <span class="file-form__files" id="number-of-files"></span>
-</form>
-<h1>2. Upload your figure type preferences</h1>
+</main>
+<!-- <h1>2. Upload your figure type preferences</h1>
 <form action="{{url_for('upload_shape')}}" method="post" enctype="multipart/form-data">
     <input type="file" name="file[]" id="file" multiple="">
     <input type="submit" value="Upload" name="submit">
-</form>
+</form> -->
 
 <h1>We found recommendations!</h1>
-{% endblock %}
 <div id="preview"></div>
 <script src="../static/main.js"></script>
+{% endblock %}

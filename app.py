@@ -10,6 +10,7 @@ import cv2
 import io 
 
 app = Flask(__name__)
+CORS(app)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 SHAPE_FOLDER = 'shape'
@@ -40,13 +41,7 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/api/data/", methods=['POST'])
-def prepare():
-    file = request.files['file']
-    res = preprocessing(file)
-    return json.dumps({"image": res.tolist()})
-
-@app.route("/recommends/")
+@app.route("/recommends/", methods=['GET'])
 def get_recommendations():
     return render_template("get_recommendations.html")
 
@@ -79,11 +74,17 @@ def model():
 def load_shards(path):
     return send_from_directory('model_js', path)
 
+@app.route("/api/data/", methods=['POST'])
+def prepare():
+    file = request.files['file']
+    res = preprocessing(file)
+    return json.dumps({"image": res.tolist()})
+
 def preprocessing(file):
     in_memory_file = io.BytesIO()
     file.save(in_memory_file)
     data = np.fromstring(in_memory_file.getvalue(), dtype=np.uint8)
-    img = cv2.imdecode(data, cv2.IMREAD_COLOR) 
+    img = cv2.imdecode(data, 1) 
     res = cv2.resize(img, dsize=(224, 224), interpolation=cv2.INTER_CUBIC)
     # file.save("static/UPLOAD/img.png") # saving uploaded img
     # cv2.imwrite("static/UPLOAD/test.png", res) # saving processed image

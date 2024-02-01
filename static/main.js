@@ -27,7 +27,7 @@ const predict = async (modelURL) => {
             });
 
         // shape has to be the same as it was for training of the model
-        const prediction = model.predict(tf.reshape(processedImage, shape = [1, 224, 224, 3]));
+        const prediction = model.predict(tf.reshape(processedImage, shape = [None, 224, 224, 3]));
         const label = prediction.argMax(axis = -1).dataSync()[0];
         renderImageLabel(img, label);
     })
