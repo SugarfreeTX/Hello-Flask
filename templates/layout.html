@@ -15,7 +15,7 @@
             <a href="{{ url_for('contact') }}">Contact</a>
             <a href="{{ url_for('get_recommendations') }}">Recommendations</a>
             <a data-target="#id01" data-toggle="modal" class="split" id="myBtn" href="#"><i class="fa fa-fw fa-sign-in"></i> Login</a>
-            <a href="{{ url_for('signup') }}" class="split"><i class="fa fa-fw fa-user"></i> Sign Up</a>
+            <a data-target="#id02" data-toggle="modal" class="split" id="mySignUpBtn" href="#"><i class="fa fa-fw fa-user"></i> Sign up!</a>
             <div class="search-container">
                 <form action="/action_page.php">
                     <input type="text" placeholder="Search.." name="search">
@@ -51,6 +51,38 @@
                 </div>
             </form>
         </div>
+        
+        <!-- sing up modal -->
+        <div id="id02" class="modal">
+
+            <form class="modal-content animate" action="/action_page.php" method="post">
+                <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
+                </div>
+            
+                <div class="container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter email" name="email" required>
+                
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Create Password" name="psw" required>
+
+                    <label for="psw-repeat"><b>Confirm Password</b></label>
+                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                        
+                    <button type="submit">Sign Up!</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+            
+                <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                </div>
+            </form>
+        </div>
 
         <div class="body-content">
             {% block content %}
@@ -64,22 +96,32 @@
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
-
         // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        
+        var btn = document.getElementById("myBtn");    
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-
         // When the user clicks on the button, open the modal
         btn.onclick = function() {
             modal.style.display = "block";
         }
-
+        // Get sign up modal 
+        var signupmodal = document.getElementById('id02');
+        // Get the button that opens the modal
+        var signupbtn = document.getElementById("mySignUpBtn");    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == signupmodal) {
+                signupmodal.style.display = "none";
+            }
+        }
+        // When the user clicks on the button, open the modal
+        signupbtn.onclick = function() {
+            signupmodal.style.display = "block";
+        }
 
 
     </script>
