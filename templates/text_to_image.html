@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+Text to Image
+{% endblock %}
+{% block content %}
+
+<h1>Text to Image Generator</h1>
+
+<main>
+    <label for="phrase">Enter a phrase: </label>
+    <textarea id="phrase" name="phrase_line"  rows="4" cols="50"></textarea>
+    <button type="submit"  id="showme">Show me!</button>
+    <button type="submit" id="clear">Clear</button>
+</main>
+
+
+{% endblock %}

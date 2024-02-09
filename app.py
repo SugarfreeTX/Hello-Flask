@@ -8,6 +8,8 @@ import json
 import numpy as np 
 import cv2
 import io 
+import huggingface_hub
+from huggingface_hub import InferenceClient
 
 app = Flask(__name__)
 CORS(app)
@@ -15,6 +17,7 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 SHAPE_FOLDER = 'shape'
 app.config['SHAPE_FOLDER'] = SHAPE_FOLDER
+client = InferenceClient(token="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")
 
 @app.route("/")
 def home():
@@ -68,6 +71,25 @@ def upload_shape():
 def model():
     json_data = json.load(open("./model_js/model.json"))
     return jsonify(json_data)
+
+# # this is the inference function - MIGHT NOT NEED!!
+# def inference(text):
+#     image = client.text_to_image(text)
+#     return image.show()
+
+# this is the get method 
+@app.route('/text_to_image', methods=['GET'])
+def text_to_image():
+    return render_template("text_to_image.html")
+
+# this is the post method
+@app.route('/text_to_image', methods=['POST'])
+def text_to_image_post():
+    text = request.form['text']
+    image = client.text_to_image(text)
+    # image.save("static/UPLOAD/text_to_image.png")
+    image.show()
+    return render_template("text_to_image.html")
 
 
 @app.route('/<path:path>')
