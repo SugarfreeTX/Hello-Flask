@@ -17,7 +17,7 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 SHAPE_FOLDER = 'shape'
 app.config['SHAPE_FOLDER'] = SHAPE_FOLDER
-client = InferenceClient(token="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")
+client = InferenceClient()
 
 @app.route("/")
 def home():
