@@ -6,12 +6,20 @@ Text to Image
 
 <h1>Text to Image Generator</h1>
 
-<main>
-    <label for="phrase">Enter a phrase: </label>
-    <textarea id="phrase" name="phrase_line"  rows="4" cols="50"></textarea>
-    <button type="submit"  id="showme">Show me!</button>
-    <button type="submit" id="clear">Clear</button>
-</main>
+<form method="post" action="{{ url_for('text_to_image_post') }}">
+    <div class="form-group">
+        <label for="text">Enter description:</label>
+        <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+        <!--<input type="text" class="form-control" id="text" name="text"> -->
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Image</button>
+
+    <div class="form-group">
+        <label for="image">Generated Image:</label>
+        <img src="{{ generated_image }}" alt=image>
+    </div>
+</form>
+
 
 
 {% endblock %}

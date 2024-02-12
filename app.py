@@ -10,6 +10,8 @@ import cv2
 import io 
 import huggingface_hub
 from huggingface_hub import InferenceClient
+import PIL
+from flask import Response
 
 app = Flask(__name__)
 CORS(app)
@@ -88,9 +90,10 @@ def text_to_image_post():
     text = request.form['text']
     image = client.text_to_image(text)
     # image.save("static/UPLOAD/text_to_image.png")
-    image.show()
-    return render_template("text_to_image.html")
-
+    image_data = io.BytesIO()
+    image.save(image_data, format='PNG')
+    image_data.seek(0)
+    return Response(image_data, mimetype='image/png')
 
 @app.route('/<path:path>')
 def load_shards(path):
